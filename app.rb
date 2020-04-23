@@ -1,33 +1,17 @@
-#!/usr/bin/env ruby
+# frozen_string_literal: true
 
-require 'async'
-require 'async/http/server'
-require 'async/http/client'
-require 'async/http/endpoint'
-require 'async/http/protocol/response'
+require 'sinatra'
+require 'sinatra/streaming'
 
 require './csv_generator'
 
-endpoint = Async::HTTP::Endpoint.parse('http://127.0.0.1:8080')
+get '/' do
+  gen = CSVGenerator.new.generate
 
-app = lambda do |request|
-  Protocol::HTTP::Response[200, {}, CSVGenerator.new.generate]
-end
-
-server = Async::HTTP::Server.new(app, endpoint)
-#client = Async::HTTP::Client.new(endpoint)
-
-Async do |task|
-  server_task = task.async do
-    server.run
+  stream do |out|
+    gen.each do |line|
+      out.puts line
+      sleep 1
+    end
   end
-
-  #response = client.get("/")
-
-  #puts response.status
-  #puts response.read
-
-  #server_task.stop
 end
-
-

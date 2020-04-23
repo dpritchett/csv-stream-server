@@ -4,6 +4,8 @@ source 'http://rubygems.org'
 
 ruby '~> 2.7.1'
 
+gem 'sinatra'
+gem 'sinatra-contrib'
+
 gem 'rake'
 gem 'rubocop'
-gem 'async-http'

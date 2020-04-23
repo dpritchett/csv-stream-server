@@ -2,34 +2,17 @@ GEM
   remote: http://rubygems.org/
   specs:
     ast (2.4.0)
-    async (1.25.0)
-      console (~> 1.0)
-      nio4r (~> 2.3)
-      timers (~> 4.1)
-    async-http (0.52.0)
-      async (~> 1.25)
-      async-io (~> 1.28)
-      async-pool (~> 0.2)
-      protocol-http (~> 0.18.0)
-      protocol-http1 (~> 0.12.0)
-      protocol-http2 (~> 0.14.0)
-    async-io (1.29.0)
-      async (~> 1.14)
-    async-pool (0.3.0)
-      async (~> 1.25)
-    console (1.8.2)
+    backports (3.17.1)
     jaro_winkler (1.5.4)
-    nio4r (2.5.2)
+    multi_json (1.14.1)
+    mustermann (1.1.1)
+      ruby2_keywords (~> 0.0.1)
     parallel (1.19.1)
     parser (2.7.1.1)
       ast (~> 2.4.0)
-    protocol-hpack (1.4.2)
-    protocol-http (0.18.0)
-    protocol-http1 (0.12.0)
-      protocol-http (~> 0.18)
-    protocol-http2 (0.14.0)
-      protocol-hpack (~> 1.4)
-      protocol-http (~> 0.18)
+    rack (2.2.2)
+    rack-protection (2.0.8.1)
+      rack
     rainbow (3.0.0)
     rake (13.0.1)
     rexml (3.2.4)
@@ -42,16 +25,30 @@ GEM
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 2.0)
     ruby-progressbar (1.10.1)
-    timers (4.3.0)
+    ruby2_keywords (0.0.2)
+    sinatra (2.0.8.1)
+      mustermann (~> 1.0)
+      rack (~> 2.0)
+      rack-protection (= 2.0.8.1)
+      tilt (~> 2.0)
+    sinatra-contrib (2.0.8.1)
+      backports (>= 2.8.2)
+      multi_json
+      mustermann (~> 1.0)
+      rack-protection (= 2.0.8.1)
+      sinatra (= 2.0.8.1)
+      tilt (~> 2.0)
+    tilt (2.0.10)
     unicode-display_width (1.7.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  async-http
   rake
   rubocop
+  sinatra
+  sinatra-contrib
 
 RUBY VERSION
    ruby 2.7.1p83

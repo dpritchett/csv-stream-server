@@ -1,12 +1,14 @@
+# frozen_string_literal: true
+
 require 'csv'
 
 class CSVGenerator
-  def generate(limit=100)
+  def generate(limit = 100, wait_secs = 0.0)
     Enumerator.new do |enum|
       limit.times do
         l = csvify(line)
         enum.yield l
-        sleep 0.2
+        sleep wait_secs
       end
     end
   end
@@ -19,7 +21,7 @@ class CSVGenerator
   end
 
   def header
-    %w[alpha bravo charlie delta echo].map{ |n| "#{n}" }
+    %w[alpha bravo charlie delta echo].map(&:to_s)
   end
 
   def body_line

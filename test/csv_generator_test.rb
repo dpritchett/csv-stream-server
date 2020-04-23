@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'minitest/autorun'
 require './csv_generator'
 
@@ -5,14 +7,14 @@ describe CSVGenerator do
   subject { CSVGenerator.new }
 
   describe :header do
-    it "has fields" do
+    it 'has fields' do
       actual = subject.header
-      assert_includes actual, "bravo"
+      assert_includes actual, 'bravo'
     end
   end
 
   describe :body_line do
-    it "has numbers" do
+    it 'has numbers' do
       actual = subject.body_line
 
       assert_equal subject.header.count, actual.count
@@ -23,7 +25,7 @@ describe CSVGenerator do
   end
 
   describe :line do
-    it "generates lines" do
+    it 'generates lines' do
       actual = subject.line
       assert_equal subject.header, actual
 
@@ -45,4 +47,3 @@ describe CSVGenerator do
     end
   end
 end
-
