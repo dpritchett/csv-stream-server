@@ -14,7 +14,7 @@ def stream_csv_file
 
   stream do |out|
     gen.each do |line|
-      out.puts line
+      out.print line
       sleep 0
     end
   end
