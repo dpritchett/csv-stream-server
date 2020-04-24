@@ -3,17 +3,17 @@
 require 'csv'
 
 class CSVGenerator
-  def generate(limit = 100, wait_secs = 0.0)
+  def generate(row_limit = 1_000, wait_secs = 0.00)
     Enumerator.new do |enum|
-      limit.times do
-        l = csvify(line)
-        enum.yield l
+      (1 + row_limit).times do
+        r = CSV.generate_line next_row
+        enum.yield r
         sleep wait_secs
       end
     end
   end
 
-  def line
+  def next_row
     @counter ||= 0
     out = @counter.zero? ? header : body_line
     @counter += 1
@@ -21,17 +21,10 @@ class CSVGenerator
   end
 
   def header
-    %w[alpha bravo charlie delta echo].map(&:to_s)
+    %w[alpha bravo charlie delta echo fox"trot]
   end
 
   def body_line
     header.count.times.map { rand(10..1000) }
-  end
-
-  def csvify(fields)
-    fields
-      .map { |el| "\"#{el}\"" }
-      .join(',')
-      .+("\n")
   end
 end

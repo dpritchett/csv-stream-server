@@ -24,12 +24,12 @@ describe CSVGenerator do
     end
   end
 
-  describe :line do
+  describe :next_row do
     it 'generates lines' do
-      actual = subject.line
+      actual = subject.next_row
       assert_equal subject.header, actual
 
-      actual = subject.line
+      actual = subject.next_row
       assert_kind_of Numeric, actual.sample
       assert_kind_of Numeric, actual.sample
     end
@@ -43,7 +43,7 @@ describe CSVGenerator do
       assert_includes gen.next, 'delta'
 
       refute_includes gen.next, 'delta'
-      assert_match /[0-9]/, gen.next
+      assert_match(/[0-9]/, gen.next)
     end
   end
 end
