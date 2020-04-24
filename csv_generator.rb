@@ -3,7 +3,7 @@
 require 'csv'
 
 class CSVGenerator
-  def generate(row_limit = 1_000, wait_secs = 0.00)
+  def generate(row_limit = 1_000_000, wait_secs = 0.00)
     Enumerator.new do |enum|
       (1 + row_limit).times do
         r = CSV.generate_line next_row

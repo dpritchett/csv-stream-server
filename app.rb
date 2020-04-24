@@ -17,5 +17,7 @@ def stream_csv_file
       out.print line
       sleep 0
     end
+  rescue IOError => e
+    warn "Error delivering CSV stream: #{e.class}, #{e.message}"
   end
 end
